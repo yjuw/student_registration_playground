@@ -6,6 +6,7 @@ course_capacity INTEGER,
 course_currently_enrolled INTEGER,
 course_instructor TEXT,
 course_section_number INTEGER
+course_location TEXT
 );
 
 CREATE TABLE IF NOT EXISTS Member(
