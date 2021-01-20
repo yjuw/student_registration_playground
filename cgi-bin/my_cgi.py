@@ -5,9 +5,16 @@ import cgitb
 cgitb.enable(display=0, logdir="/test/")
 
 form = cgi.FieldStorage()
-if "uname" not in form or "psw" not in form:
-    print("<H1>Error</H1>")
-    print("Please fill in the name and password fields.")
-    
-print("<p>name:", form["name"].value)
-print("<p>addr:", form["psw"].value)
+first_name = form.getvalue("uname")
+password = form.getvalue("psw")
+
+print("Content-type:text/html")
+print("")
+print("")
+print("Hello")
+print("")
+print("")
+print("")
+print(" Hello", first_name)
+print("")
+print("")
