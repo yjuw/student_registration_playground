@@ -4,4 +4,4 @@ The main purpose of this program is to introduce and test vulnerabilities for we
 <br>
 List of Resources
 I was always confused about how each user would have a different salt. 
-[Explanation by Dan Arias]: (https://auth0.com/blog/hashing-in-action-understanding-bcrypt/)
+[Explanation by Dan Arias]: https://auth0.com/blog/hashing-in-action-understanding-bcrypt/
