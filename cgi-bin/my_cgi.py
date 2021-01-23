@@ -23,7 +23,7 @@ host = data["db_host"],
 port = data["db_port"])
 cur = connection.cursor()
 
-#upass_salted = bcrypt.hashpw(bytes(upass), bytes(salt))
+upass_salted = bcrypt.scrypt(bytes(upass, encoding='utf8'), bytes(salt, encoding='utf8'))
 
 try:
        # member = cur.execute("""SELECT net_id
