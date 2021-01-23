@@ -2,5 +2,5 @@ This is a web version of a student registration system only meant to be run on l
 The main purpose of this program is to introduce and test vulnerabilities for web applications.
 
 <br>
-List of Resources
+List of Resources <br>
 I was always confused on how a user would authenticate if the salt was different every time. [Explanation by Dan Arias](https://auth0.com/blog/hashing-in-action-understanding-bcrypt/)
