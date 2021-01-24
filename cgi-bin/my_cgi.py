@@ -4,7 +4,7 @@ import psycopg2
 import json
 import cgitb
 import bcrypt
-cgitb.enable(display=0, logdir="/test/")
+cgitb.enable()
 
 form = cgi.FieldStorage()
 net_id = form.getvalue("uname")
@@ -12,8 +12,6 @@ upass = form.getvalue("psw")
 
 with open("/var/www/planning/postgre_credentials.json") as file:
     data = json.load(file)
-with open("/var/www/planning/salt.txt", "r") as file:
-      salt = file.read()
 
 connection = psycopg2.connect(
 database = data["db_name"], 
@@ -23,25 +21,32 @@ host = data["db_host"],
 port = data["db_port"])
 cur = connection.cursor()
 
-upass_salted = bcrypt.scrypt(bytes(upass, encoding='utf8'), bytes(salt, encoding='utf8'))
-
+net_id = "admin1"
+upass = b"BuenosDias"
+test_salt = b'$2b$12$gCQYAmpaK0sKum4wrt/j4.'
 try:
-       # member = cur.execute("""SELECT net_id
-       #                      FROM member
-       #                      WHERE net_id = %s
-       #                      AND hashed_pass = %s""",
-       #                      (net_id, upass_salted))
-       print ("Content-type:text/html\n") 
-       print ("<html>") 
-       print ("<head>") 
-       print ("<title>First CGI Program</title>") 
-       print ("</head>") 
-       print ("<body>") 
-       print("testerino")
-       print ("</body>") 
-       print ("</html>")
-except:
-       print("error")
+       member = cur.execute("""SELECT hashed_pass
+                            FROM member
+                            WHERE net_id = %s""",
+                            (net_id,))
+       
+       upass = bcrypt.hashpw(upass, test_salt)
+       member_pass = cur.fetchone()[0]
+       print(upass)
+       print(member_pass)
+       is_member = bcrypt.checkpw(upass, member_pass)
+       
+       print("Content-type:text/html\n")
+       print("<html>") 
+       print("<head>") 
+       print("<title>Who are you?</title>") 
+       print("</head>") 
+       print("<body>") 
+       print("hi", is_member)
+       print("</body>") 
+       print("</html>")
+except Exception as e:
+       print("error", e)
 
 
 finally:
