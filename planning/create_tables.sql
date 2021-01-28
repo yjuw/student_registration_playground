@@ -1,3 +1,5 @@
+--DROP TABLE MEMBER CASCADE;
+
 CREATE TABLE IF NOT EXISTS Course(
 course_id SERIAL PRIMARY KEY,
 course_name TEXT,
@@ -14,7 +16,7 @@ net_id TEXT PRIMARY KEY,
 first_name TEXT,
 middle_name TEXT,
 last_name TEXT,
-hashed_pass TEXT,
+hashed_pass VARCHAR,
 role TEXT
 );
 

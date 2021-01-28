@@ -31,10 +31,8 @@ try:
                             (net_id,))
        
        upass = bcrypt.hashpw(upass, test_salt)
-       member_pass = cur.fetchone()[0]
-       print(upass)
-       print(member_pass)
-       is_member = bcrypt.checkpw(upass, member_pass)
+       member_pass = bytes(cur.fetchone()[0].encode("utf-8"))
+       is_member = upass == member_pass
        
        print("Content-type:text/html\n")
        print("<html>") 

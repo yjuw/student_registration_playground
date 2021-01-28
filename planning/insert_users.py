@@ -37,12 +37,13 @@ connection, cur = reset_connection()
 connection.set_client_encoding('UTF8')
 password = b'BuenosDias'
 salt = b'$2b$12$gCQYAmpaK0sKum4wrt/j4.'
-hashed = bcrypt.hashpw(password, salt)
+hashed = str(bcrypt.hashpw(password, salt))[2:-1]
 
-#delete_name = "admin1"
-#cur.execute("""DELETE FROM member WHERE net_id = 'admin1'""")
-#connection.commit()
-print(hashed)
+
+delete_name = "admin1"
+cur.execute("""DELETE FROM member WHERE net_id = 'admin1'""")
+connection.commit()
+#print(hashed)
 cur.execute("""INSERT INTO  member(net_id, first_name, last_name, hashed_pass, role)
                             VALUES (%s, %s, %s, %s, %s)""",
                             ("admin1", "Bruce", "Wayne", hashed, "Admin"))
