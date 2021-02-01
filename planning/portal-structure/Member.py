@@ -15,4 +15,3 @@ class student(member):
 
 bruce = admin("admin1", "hahaha", "Bruce","Batman","Padron")
 brian = student("student1", "nonono", "Brian", "Robin", "Kim")
-print("I have been doing OOP for python incorrectly :/")
