@@ -16,7 +16,7 @@ net_id TEXT PRIMARY KEY,
 first_name TEXT,
 middle_name TEXT,
 last_name TEXT,
-hashed_pass VARCHAR,
+hashed_pass TEXT,
 role TEXT
 );
 
