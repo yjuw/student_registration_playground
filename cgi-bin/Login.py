@@ -72,10 +72,21 @@ def login(username, password):
                         </body> 
                         </html>""".format(username)
             return html
+        elif user_role.lower() == "admin":
+            html = """Content-type:text/html\n
+                        <html>
+                        <head>
+                        <title>Admin</title>
+                        </head>
+                        <body>
+                        Hello {}
+                        </body> 
+                        </html>""".format(username)
+            return html
         
     else:
         print("incorrect credentials")
         connection.close()     
 #create_account("test1", "testerino", "cappuccino", "Al Pacino", "test_password", "student")
-
-login("test1", "test_password")
+#create_account("admin1", "Bruce", "P.", "Wayne", "BuenosDias", "admin")
+#login("test1", "test_password")
